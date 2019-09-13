@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Bonus</title>
+</head>
+<body>
+
+<input id="inp" type="text">
+<button id="button" type="button">Click Me!</button>
+
+<script src="js/jquery.js"></script>
+<script>
+
+
+    // =================== Fetch Bonuses
+    //
+    // -- Ex. 1
+    //
+    // In your data directory, create a profiles.json file with the following...
+
+    // {
+    //     "sandy123": "brown",
+    //     "bob234": "green",
+    //     "sally345": "blue"
+    // }
+
+    // Add an input field and submit button (you will need to prevent the default behaviour) that when clicked, runs the following function...
+    // Create a function that takes in a username and fetch's the color preference based on the username and sets the background color to that color.
+    //
+    //
+
+    let userName;
+
+
+    const userColor = (userName) => {
+        fetch('./data/profiles.json')
+            .then(response => response.json())
+            .then((data) => {
+                $('body').css('background-color', data[userName]);
+            })
+            .catch(error => console.error(error))
+
+    };
+
+
+    $('#button').click(function () {
+
+        // variable being defined by string from input bar
+        userName = $('#inp').val();
+
+        // calling our fetch method to get json
+        userColor(userName);
+
+    });
+
+
+
+
+</script>
+</body>
+</html>
